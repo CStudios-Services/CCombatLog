@@ -4,3 +4,4 @@ COMBAT_TAG:
   RESTRICTED: "<#9f9f9f>Non puoi eseguire quest'azione durante il combattimento!</#9f9f9f>"
   ACTION_BAR: "<#b71717>Combattimento: {time_left}</#b71717>"
   CANT_EXECUTE_COMMAND: "<#9f9f9f>Non puoi eseguire comandi in combattimento</#9f9f9f>"
+  CANT_USE_ELYTRA: "<#9f9f9f>You can't use elytra in pvp</#9f9f9f>"

@@ -1,6 +1,8 @@
 package org.cstudios.listeners;
 
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -8,9 +10,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.cstudios.handlers.manager.CombatManager;
 import org.cstudios.utils.Messages;
@@ -109,5 +114,41 @@ public class PlayerListener implements Listener {
             event.setCancelled(true);
         }
     }
+
+    @EventHandler
+    public void elytraToggle(EntityToggleGlideEvent event) {
+
+        if(!config.getConfig().getBoolean("COMBAT_TAG.DISABLE_ELYTRA"))
+           return;
+
+
+        if (event.isCancelled() || !(event.getEntity() instanceof Player player))
+            return;
+
+        if (!combat.isTagged(player))
+            return;
+
+        player.sendMessage(Messages.toComponent("COMBAT_TAG.CANT_USE_ELYTRA"));
+        player.setGliding(false);
+        event.setCancelled(true);
+
+        PlayerInventory inventory = player.getInventory();
+        ItemStack chest = inventory.getChestplate();
+
+        if (chest == null || chest.getType() != Material.ELYTRA)
+            return;
+
+        inventory.setChestplate(null);
+
+        if (inventory.firstEmpty() == -1) {
+            Location location = player.getLocation();
+            location.getWorld().dropItemNaturally(location, chest);
+            player.updateInventory();
+            return;
+        }
+
+        inventory.addItem(chest);
+    }
+
 
 }
