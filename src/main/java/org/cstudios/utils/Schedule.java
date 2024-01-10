@@ -1,10 +1,10 @@
 package org.cstudios.utils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import org.cstudios.CCombatLog;
-import org.cstudios.CTeams;
 
 import java.util.concurrent.Executor;
 
