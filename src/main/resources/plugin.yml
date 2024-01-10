@@ -1,0 +1,4 @@
+name: CCombatTag
+version: '${project.version}'
+main: org.cstudios.CCombatTag
+api-version: '1.20'
