@@ -1,3 +1,7 @@
 COMBAT_TAG:
   TAG_ON_CRYSTAL_EXPLOSION: true
+  KILL_TAGGED_ON_QUIT: true
+  BLOCK_COMMANDS_ON_TAG:
+    ENABLED: true
+    BYPASS_PERM: "ccombatlog.bypass"
   TIME: 15

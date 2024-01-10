@@ -20,6 +20,8 @@ public final class CCombatLog extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        instance = this;
+
         getLogger().info(" ");
         getLogger().info("CCombatLog Enabling - CStudios");
         getLogger().info(" ");

@@ -8,11 +8,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffect;
 import org.cstudios.handlers.manager.CombatManager;
 import org.cstudios.utils.Messages;
 import org.cstudios.utils.config.model.YamlFile;
+
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class PlayerListener implements Listener {
@@ -65,6 +69,10 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+
+        if(!config.getConfig().getBoolean("COMBAT_TAG.KILL_TAGGED_ON_QUIT"))
+            return;
+
         Player player = event.getPlayer();
 
         if (combat.isTagged(player)) {
@@ -76,6 +84,26 @@ public class PlayerListener implements Listener {
             combat.flush(player);
         }
 
+    }
+
+    @EventHandler
+    public void onDeath(PlayerDeathEvent event) {
+        Player victim = event.getPlayer();
+        combat.flush(victim);
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent event)  {
+
+        if(!config.getConfig().getBoolean("COMBAT_TAG.BLOCK_COMMANDS_ON_TAG"))
+            return;
+
+        Player player = event.getPlayer();
+
+        if (combat.isTagged(player) && !player.hasPermission(Objects.requireNonNull(config.getConfig().getString("COMBAT_TAG.BLOCK_COMMANDS_ON_TAG.BYPASS_PERM")))) {
+            player.sendMessage(Messages.toComponent("COMBAT_TAG.RESTRICTED"));
+            event.setCancelled(true);
+        }
     }
 
 }
