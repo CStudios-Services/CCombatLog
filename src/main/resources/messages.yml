@@ -1,7 +1,7 @@
 COMBAT_TAG:
-  UNTAGGED: "<#9f9f9f>Non sei più in combattimento</#9f9f9f>"
-  TAGGED: "<#b71717>Sei in combattimento, non sloggare.</#b71717>"
-  RESTRICTED: "<#9f9f9f>Non puoi eseguire quest'azione durante il combattimento!</#9f9f9f>"
-  ACTION_BAR: "<#b71717>Combattimento: {time_left}</#b71717>"
-  CANT_EXECUTE_COMMAND: "<#9f9f9f>Non puoi eseguire comandi in combattimento</#9f9f9f>"
-  CANT_USE_ELYTRA: "<#9f9f9f>You can't use elytra in pvp</#9f9f9f>"
+  UNTAGGED: "<#66E973>You are no longer combat tagged.</#66E973>"
+  TAGGED: "<#E52E2E>You are now combat tagged, please do not log out.</#E52E2E>"
+  RESTRICTED: "<#E52E2E>You can't execute this action while you're combat tagged!</#E52E2E>"
+  ACTION_BAR: "<white>Combat:</white> <#E52E2E>{time_left}</#E52E2E>"
+  CANT_EXECUTE_COMMAND: "<#E52E2E>You can't execute this command while you're combat tagged</#E52E2E>"
+  CANT_USE_ELYTRA: "<#E52E2E>You can't use elytra while you're combat tagged</#E52E2E>"
