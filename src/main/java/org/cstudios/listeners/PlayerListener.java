@@ -101,6 +101,10 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
 
         if (combat.isTagged(player) && !player.hasPermission(Objects.requireNonNull(config.getConfig().getString("COMBAT_TAG.BLOCK_COMMANDS_ON_TAG.BYPASS_PERM")))) {
+
+            if(config.getConfig().getStringList("COMBAT_TAG.BLOCK_COMMANDS_ON_TAG.PERMITTED_COMMANDS").contains(event.getMessage()))
+                return;
+
             player.sendMessage(Messages.toComponent("COMBAT_TAG.RESTRICTED"));
             event.setCancelled(true);
         }

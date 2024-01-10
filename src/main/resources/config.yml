@@ -4,4 +4,9 @@ COMBAT_TAG:
   BLOCK_COMMANDS_ON_TAG:
     ENABLED: true
     BYPASS_PERM: "ccombatlog.bypass"
+    PERMITTED_COMMANDS:
+      - "/msg"
+      - "/r"
+      - "/combat"
+      - "/ct"
   TIME: 15
